@@ -41,6 +41,8 @@ io.sockets.on('connection', function (socket) {
     
     var clientId = '/#' + socket.client.id;
     
+    console.log(socket.client.id + " conectado!");
+    
     socket.on('fc-enviar-mensagem', function(mensagem) {
        socket.broadcast.to(socket.parceiroId).emit('fs-enviar-mensagem', mensagem); 
     });
@@ -80,6 +82,8 @@ io.sockets.on('connection', function (socket) {
        if(socket.parceiroId) {
            socket.broadcast.to(socket.parceiroId).emit('fs-encerrar-sessao');
        }
+       console.log(socket.client.id + " desconectado!");
+       
     });
     
     socket.on('fc-esconder-descricao-carta', function(esconderDescricaoCartas) {
